@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Something's coming ✦</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --midnight: #0B1526;
+    --midnight-2: #10203A;
+    --midnight-3: #182B4A;
+    --gold: #E8B86D;
+    --cream: #FDF6EC;
+    --cream-dim: rgba(253,246,236,0.6);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 25% 20%, rgba(232,184,109,0.12), transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(240,135,107,0.10), transparent 50%),
+      var(--midnight);
+    color:var(--cream);
+    font-family:'DM Mono', monospace;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 24px;
+    overflow:hidden;
+    position:relative;
+  }
+  .stars{ position:absolute; inset:0; }
+  .star{
+    position:absolute;
+    background:var(--cream);
+    border-radius:50%;
+    opacity:0.4;
+    animation:twinkle 3.2s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{ opacity:0.12; }
+    50%{ opacity:0.85; }
+  }
+
+  .mark{
+    position:relative;
+    z-index:2;
+    font-size:1.8rem;
+    margin-bottom:30px;
+    opacity:0;
+    animation:fadeIn 1.2s ease forwards 0.2s;
+  }
+
+  .kicker{
+    position:relative;
+    z-index:2;
+    font-size:0.68rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--gold);
+    opacity:0;
+    animation:fadeIn 1.2s ease forwards 0.6s;
+    margin-bottom:22px;
+  }
+
+  h1{
+    position:relative;
+    z-index:2;
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(1.6rem, 5vw, 2.6rem);
+    line-height:1.5;
+    max-width:600px;
+    color:var(--cream);
+    opacity:0;
+    animation:fadeIn 1.2s ease forwards 1s;
+  }
+  h1 em{ color:var(--gold); font-style:italic; }
+
+  .line2{
+    position:relative;
+    z-index:2;
+    margin-top:16px;
+    font-family:'DM Mono', monospace;
+    font-size:0.82rem;
+    color:var(--cream-dim);
+    letter-spacing:0.5px;
+    opacity:0;
+    animation:fadeIn 1.2s ease forwards 1.6s;
+  }
+
+  .countdown{
+    position:relative;
+    z-index:2;
+    display:flex;
+    gap:14px;
+    margin-top:52px;
+    flex-wrap:wrap;
+    justify-content:center;
+    opacity:0;
+    animation:fadeIn 1.2s ease forwards 2.1s;
+  }
+  .cd-unit{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .cd-card{
+    width:64px;
+    height:76px;
+    background:linear-gradient(160deg, var(--midnight-3), var(--midnight-2));
+    border:1px solid rgba(232,184,109,0.3);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 20px 40px -18px rgba(0,0,0,0.6);
+    position:relative;
+    overflow:hidden;
+  }
+  .cd-card::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:50%;
+    height:1px;
+    background:rgba(0,0,0,0.35);
+  }
+  .cd-digit{
+    font-family:'DM Mono', monospace;
+    font-size:1.7rem;
+    color:var(--gold);
+    transition:transform 0.3s ease;
+    display:inline-block;
+  }
+  .cd-digit.flip{ transform:rotateX(90deg); }
+  .cd-label{
+    font-size:0.58rem;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+  }
+  .cd-sep{ align-self:center; font-size:1.4rem; color:var(--gold); opacity:0.5; margin-top:-16px; }
+
+  .footer-hint{
+    position:relative;
+    z-index:2;
+    margin-top:48px;
+    font-size:0.66rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:rgba(253,246,236,0.35);
+    opacity:0;
+    animation:fadeIn 1.2s ease forwards 2.6s;
+  }
+
+  @keyframes fadeIn{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; opacity:1 !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <div class="mark">🐾</div>
+  <div class="kicker">something is being prepared</div>
+  <h1>A little something is on its way<br>for you, <em>Cristene</em>.</h1>
+  <p class="line2">Keep this date open. You'll want to see it.</p>
+
+  <div class="countdown" id="countdown">
+    <div class="cd-unit">
+      <div class="cd-card"><span class="cd-digit" id="d-days">00</span></div>
+      <span class="cd-label">days</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit">
+      <div class="cd-card"><span class="cd-digit" id="d-hours">00</span></div>
+      <span class="cd-label">hrs</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit">
+      <div class="cd-card"><span class="cd-digit" id="d-mins">00</span></div>
+      <span class="cd-label">min</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-unit">
+      <div class="cd-card"><span class="cd-digit" id="d-secs">00</span></div>
+      <span class="cd-label">sec</span>
+    </div>
+  </div>
+
+  <div class="footer-hint">more to come · august 18</div>
+
+<script>
+  function scatterStars(container, count){
+    for(let i=0;i<count;i++){
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random()*2 + 1;
+      s.style.width = size+'px';
+      s.style.height = size+'px';
+      s.style.left = Math.random()*100+'%';
+      s.style.top = Math.random()*100+'%';
+      s.style.animationDelay = (Math.random()*3)+'s';
+      container.appendChild(s);
+    }
+  }
+  scatterStars(document.getElementById('stars'), 80);
+
+  const target = new Date('2026-08-18T00:00:00');
+  const els = {
+    days: document.getElementById('d-days'),
+    hours: document.getElementById('d-hours'),
+    mins: document.getElementById('d-mins'),
+    secs: document.getElementById('d-secs'),
+  };
+  const prev = { days:'', hours:'', mins:'', secs:'' };
+
+  function setDigit(el, val, key){
+    const str = String(val).padStart(2,'0');
+    if (prev[key] === str) return;
+    prev[key] = str;
+    el.classList.add('flip');
+    setTimeout(() => { el.textContent = str; }, 150);
+    setTimeout(() => { el.classList.remove('flip'); }, 300);
+  }
+
+  function tick(){
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0){
+      clearInterval(timer);
+      return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    setDigit(els.days, days, 'days');
+    setDigit(els.hours, hours, 'hours');
+    setDigit(els.mins, mins, 'mins');
+    setDigit(els.secs, secs, 'secs');
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+</script>
+</body>
+</html>
